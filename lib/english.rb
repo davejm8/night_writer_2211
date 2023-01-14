@@ -1,6 +1,7 @@
 class English
+  attr_reader :alphabet
 
-  def english_translate
+  def initialize
     @alphabet ||= {
       "a" => ["0.", "..", ".."],
       "b" => ["0.", "0.", ".."],
