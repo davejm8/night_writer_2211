@@ -1,3 +1,5 @@
+require './lib/translator'
+
 class NightWriter
 
   attr_accessor :read_file, :write_file
@@ -5,6 +7,7 @@ class NightWriter
   def initialize
     @read_file = ARGV[0]
     @write_file = ARGV[1]
+    @translated_letters = Translator.new
   end
 
   def read_and_write
@@ -17,5 +20,5 @@ class NightWriter
 
 end
 
-# night_writer = NightWriter.new
-# night_writer.read_and_write
+night_writer = NightWriter.new
+night_writer.read_and_write

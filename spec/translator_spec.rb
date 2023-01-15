@@ -1,9 +1,10 @@
 require './spec/spec_helper'
 
 RSpec.describe Translator do
+  let(:english) {English.new}
   let(:translator) {Translator.new}
   input = File.read('./message.txt')
-
+  output = File.read('./braille.txt')
 
   describe '#initialize' do
     it 'exists' do
@@ -15,9 +16,17 @@ RSpec.describe Translator do
       end
   end
 
+  describe '#braille_translation' do
+    it 'translates to a braille array' do
+      expect(translator.braille_translation(input).flatten).to be_a(Array)
+    end
+  end
+
   describe '#translate' do
     it 'translates english to braille' do
-      expect(translator.translate(input)).to be_a(String)
+      translator.braille_translation(input)
+      translator.translate(input)
+      expect(translator.translate(input)).to eq(output)
     end
   end
 end
