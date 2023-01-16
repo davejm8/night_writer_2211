@@ -11,11 +11,10 @@ class NightWriter
   end
 
   def read_and_write
-    incoming = File.open(@in, "r")
-		text = incoming.read
-		translated = @to_braille.translate(File.read('./message.txt'))	
+    incoming = File.read(@in)
+		translated = @to_braille.translate_to_braille(File.read('./message.txt'))	
 		outgoing = File.write(@out, translated)
-		p "Created #{@out} containing #{text.length} characters"
+		p "Created #{@out} containing #{incoming.length} characters"
   end
 
 end

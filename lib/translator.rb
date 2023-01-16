@@ -1,38 +1,43 @@
 require './lib/english'
 
 class Translator < English
-  attr_reader :alphabet, :braille_message
+  attr_reader :alphabet, :braille_characters
   
   def initialize
     super
   end
 
-  def translate(input)
-    array = []
-    input.chars.each do |char|
-      @alphabet.each do |eng_letter, braille_char|
-        if eng_letter == char
-          array << braille_char
-        end
-      end
-      @formatted = array.each_slice(40).map do |sliced|
-        sliced.transpose.map(&:join).join("\n")
+  def braille_array(input)
+    input.chars.filter_map do |letter|
+      @alphabet[letter]
+    end
+  end
+  
+  def translate_to_braille(input)
+    braille_array(input).each_slice(40).map do |sliced|
+      sliced.transpose.map(&:join).join("\n")
+    end.join("\n\n")
+  end
+
+
+  def braille_format(input)
+    braille_message = []
+    braille_message << input.split
+  
+    braille_split = []
+    braille_message.map do |braille|
+      braille.each do |character|
+        braille_split << character.chars.each_slice(2).map(&:join)
       end
     end
-    @formatted.join("\n\n")
+    braille_split
+  end
+
+  def translate_to_english(input)
+    in_eng = []
+    braille_format(input).transpose.map do |letter|
+      in_eng << @braille_characters[letter]
+    end
+    in_eng.join
   end
 end
-
-
-# translation_text = input.each_char.inject([]) do |let1, let2|
-#   let1 << @alphabet[let2]
-# end
-# top = []
-# middle = []
-# bottom = []
-# translation_text.each do |letter|
-#   top << letter[0]
-#   middle << letter[1]
-#   bottom << letter[2]
-# end
-# braille_arr = "#{top.join}\n#{middle.join}\n#{bottom.join}\n"
