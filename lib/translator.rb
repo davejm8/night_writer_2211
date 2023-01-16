@@ -19,7 +19,7 @@ class Translator < English
         sliced.transpose.map(&:join).join("\n")
       end
     end
-    @formatted.join("\n")
+    @formatted.join("\n\n")
   end
 end
 

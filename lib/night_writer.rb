@@ -2,7 +2,7 @@ require './lib/translator'
 
 class NightWriter
 
-  attr_accessor :read_file, :write_file, :translated_letters
+  attr_accessor :in, :out, :to_braille
 
   def initialize
     @in = ARGV[0]
@@ -20,5 +20,5 @@ class NightWriter
 
 end
 
-night_writer = NightWriter.new
-night_writer.read_and_write
+# night_writer = NightWriter.new
+# night_writer.read_and_write
