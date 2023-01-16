@@ -1,18 +1,21 @@
+require './lib/translator'
+
 class NightWriter
 
-  attr_accessor :read_file, :write_file
+  attr_accessor :in, :out, :to_braille
 
   def initialize
-    @read_file = ARGV[0]
-    @write_file = ARGV[1]
+    @in = ARGV[0]
+    @out = ARGV[1]
+    @to_braille = Translator.new
   end
 
   def read_and_write
-    incoming_text = File.open(@read_file, "r")
-    text = incoming_text.read
-    character_count = text.chars.count
-    puts "Created #{@write_file} contains #{character_count} characters"
-    File.write(@write_file, text)
+    incoming = File.open(@in, "r")
+		text = incoming.read
+		translated = @to_braille.translate(File.read('./message.txt'))	
+		outgoing = File.write(@out, translated)
+		p "Created #{@out} containing #{text.length} characters"
   end
 
 end
