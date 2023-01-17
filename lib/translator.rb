@@ -1,38 +1,52 @@
 require './lib/english'
 
 class Translator < English
-  attr_reader :alphabet, :braille_message
+  attr_reader :alphabet, :braille_characters
   
   def initialize
     super
   end
 
-  def translate(input)
-    array = []
-    input.chars.each do |char|
-      @alphabet.each do |eng_letter, braille_char|
-        if eng_letter == char
-          array << braille_char
-        end
-      end
-      @formatted = array.each_slice(40).map do |sliced|
-        sliced.transpose.map(&:join).join("\n")
-      end
+  def braille_array(input)
+    input.chars.map do |letter|
+      @alphabet[letter]
     end
-    @formatted.join("\n\n")
   end
+  
+  def translate_to_braille(input)
+    braille_array(input).each_slice(40).map do |sliced|
+      sliced.transpose.map(&:join).join("\n")
+    end.join("\n\n")
+  end
+
+  def split_input(input)
+    input_array = []
+		input_array << input.split
+    input_array
+  end
+
+  def format_braille(input)
+    formatted_braille_array = []
+    
+		split_input(input).map do |braille|      
+      top = (braille.find_all.with_index{|braille, index| index % 3 == 0}).join
+      middle = (braille.find_all.with_index{|braille, index| index % 3 == 1}).join
+      bottom = (braille.find_all.with_index{|braille, index| index % 3 == 2}).join
+			
+      formatted_braille = [top, middle, bottom]
+      
+			formatted_braille.each do |character|
+				formatted_braille_array.push(character.chars.each_slice(2).map(&:join))
+			end
+    end
+    
+    formatted_braille_array
+  end
+
+  def translate_to_english(input)
+	  format_braille(input).transpose.map do |character|
+			@braille_characters[character]
+		end.join
+	end
 end
 
-
-# translation_text = input.each_char.inject([]) do |let1, let2|
-#   let1 << @alphabet[let2]
-# end
-# top = []
-# middle = []
-# bottom = []
-# translation_text.each do |letter|
-#   top << letter[0]
-#   middle << letter[1]
-#   bottom << letter[2]
-# end
-# braille_arr = "#{top.join}\n#{middle.join}\n#{bottom.join}\n"
