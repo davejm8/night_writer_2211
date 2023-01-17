@@ -8,7 +8,7 @@ class Translator < English
   end
 
   def braille_array(input)
-    input.chars.filter_map do |letter|
+    input.chars.map do |letter|
       @alphabet[letter]
     end
   end
@@ -19,25 +19,34 @@ class Translator < English
     end.join("\n\n")
   end
 
+  def split_input(input)
+    input_array = []
+		input_array << input.split
+    input_array
+  end
 
-  def braille_format(input)
-    braille_message = []
-    braille_message << input.split
-  
-    braille_split = []
-    braille_message.map do |braille|
-      braille.each do |character|
-        braille_split << character.chars.each_slice(2).map(&:join)
-      end
+  def format_braille(input)
+    formatted_braille_array = []
+    
+		split_input(input).map do |braille|      
+      top = (braille.find_all.with_index{|braille, index| index % 3 == 0}).join
+      middle = (braille.find_all.with_index{|braille, index| index % 3 == 1}).join
+      bottom = (braille.find_all.with_index{|braille, index| index % 3 == 2}).join
+			
+      formatted_braille = [top, middle, bottom]
+      
+			formatted_braille.each do |character|
+				formatted_braille_array.push(character.chars.each_slice(2).map(&:join))
+			end
     end
-    braille_split
+    
+    formatted_braille_array
   end
 
   def translate_to_english(input)
-    in_eng = []
-    braille_format(input).transpose.map do |letter|
-      in_eng << @braille_characters[letter]
-    end
-    in_eng.join
-  end
+	  format_braille(input).transpose.map do |character|
+			@braille_characters[character]
+		end.join
+	end
 end
+

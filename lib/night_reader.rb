@@ -14,9 +14,9 @@ class NightReader
     incoming = File.read(@in)
 		translated = @to_english.translate_to_english(File.read('./braille.txt'))	
 		outgoing = File.write(@out, translated)
-		p "Created #{@out} containing #{incoming.length} characters"
+		p "Created #{@out} containing #{translated.length} characters"
   end
 end
 
-# night_reader = NightReader.new
-# night_reader.read_and_write_from_braille
+night_reader = NightReader.new
+night_reader.read_and_write_from_braille

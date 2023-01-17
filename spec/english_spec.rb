@@ -10,6 +10,7 @@ RSpec.describe English do
 
     it 'has attributes' do
       expect(test_english.alphabet["a"]).to eq(["0.", "..", ".."])
+      expect(test_english.braille_characters[["0.", "..", ".."]]).to eq("a")
     end
   end
 end
