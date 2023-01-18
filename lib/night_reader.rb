@@ -1,7 +1,6 @@
 require './lib/translator'
 
 class NightReader
-
   attr_accessor :in, :out, :to_english
 
   def initialize
@@ -13,10 +12,10 @@ class NightReader
   def read_and_write_from_braille
     incoming = File.read(@in)
 		translated = @to_english.translate_to_english(File.read('./braille.txt'))	
-		outgoing = File.write(@out, translated)
+		File.write(@out, translated)
 		p "Created #{@out} containing #{translated.length} characters"
   end
 end
 
-night_reader = NightReader.new
-night_reader.read_and_write_from_braille
+# night_reader = NightReader.new
+# night_reader.read_and_write_from_braille

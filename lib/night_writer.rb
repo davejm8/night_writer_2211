@@ -1,7 +1,6 @@
 require './lib/translator'
 
 class NightWriter
-
   attr_accessor :in, :out, :to_braille
 
   def initialize
@@ -16,8 +15,7 @@ class NightWriter
 		File.write(@out, translated)
 		p "Created #{@out} containing #{incoming.length} characters"
   end
-
 end
 
-night_writer = NightWriter.new
-night_writer.read_and_write
+# night_writer = NightWriter.new
+# night_writer.read_and_write

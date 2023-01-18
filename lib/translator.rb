@@ -1,6 +1,6 @@
-require './lib/english'
+require './lib/english_braille'
 
-class Translator < English
+class Translator < EnglishBraille
   attr_reader :alphabet, :braille_characters
   
   def initialize
@@ -39,7 +39,6 @@ class Translator < English
 				formatted_braille_array.push(character.chars.each_slice(2).map(&:join))
 			end
     end
-    
     formatted_braille_array
   end
 

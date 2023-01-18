@@ -32,13 +32,13 @@ RSpec.describe Translator do
   end
 
   describe '#format_braille' do
-  it 'takes multiple lines and places them in 3 seperate elements' do
+  it 'takes multiple lines and places them in 3 seperate elements: top, middle and bottom' do
     expect(translator.format_braille(".00..0.0\n00.00.00\n0...0.0.")).to eq([[".0", "0.", ".0", ".0"], ["00", ".0", "0.", "00"], ["0.", "..", "0.", "0."]])
   end
 end
 
   describe '#translate_to_english' do
-    it 'translates braille to english' do
+    it 'recieves braille in a txt file and returns a new file with the corresponding english words' do
       expect(translator.translate_to_english(".00..0.0\n 00.00.00\n 0...0.0.")).to eq("test")
     end
   end
