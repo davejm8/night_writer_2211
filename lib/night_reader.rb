@@ -1,7 +1,6 @@
 require './lib/translator'
 
 class NightReader
-
   attr_accessor :in, :out, :to_english
 
   def initialize

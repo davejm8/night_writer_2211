@@ -1,7 +1,6 @@
 require './lib/translator'
 
 class NightWriter
-
   attr_accessor :in, :out, :to_braille
 
   def initialize
