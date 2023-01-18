@@ -15,7 +15,6 @@ class NightWriter
 		File.write(@out, translated)
 		p "Created #{@out} containing #{incoming.length} characters"
   end
-
 end
 
 night_writer = NightWriter.new
