@@ -1,11 +1,11 @@
 require './spec/spec_helper'
 
-RSpec.describe English do
-  let(:test_english) { English.new }
+RSpec.describe EnglishBraille do
+  let(:test_english) { EnglishBraille.new }
   
   describe 'initialize' do
     it 'exists' do
-      expect(test_english).to be_a(English)
+      expect(test_english).to be_a(EnglishBraille)
     end
 
     it 'has attributes' do

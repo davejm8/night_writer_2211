@@ -1,6 +1,6 @@
 require './lib/english_braille'
 
-class Translator < English
+class Translator < EnglishBraille
   attr_reader :alphabet, :braille_characters
   
   def initialize
