@@ -17,5 +17,5 @@ class NightReader
   end
 end
 
-night_reader = NightReader.new
-night_reader.read_and_write_from_braille
+# night_reader = NightReader.new
+# night_reader.read_and_write_from_braille

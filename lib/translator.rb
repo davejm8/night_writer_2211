@@ -1,4 +1,4 @@
-require './lib/english'
+require './lib/english_braille'
 
 class Translator < English
   attr_reader :alphabet, :braille_characters
