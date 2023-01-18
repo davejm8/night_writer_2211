@@ -10,7 +10,7 @@ Braille uses a grid of zeroes and dots to represent characters.
 ..
 
 
-##Based on these principles, 'hello world' is as follows:
+Based on these principles, 'hello world' is as follows:
 
 0.0.0.0.0....00.0.0.00
 00.00.0..0..00.0000..0
