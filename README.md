@@ -39,7 +39,4 @@ Functionality
 
 Within the lib directory files 'night_writer.rb' and 'night_reader.rb' contain their respective classes which take in input and output file paths upon being initialized.  The file 'translator.rb' contains the translator class that inherits from the english class stored in 'english.rb' The purpose of this inheritance is to memoize the hash used in the translating logic stored in translator.
 
-
-Within the lib directory 'night_writer.rb' and 'night_reader.rb' files provide their respective classes which take in input and output file paths upon initialization. The 'iomanager.rb' file provides the a module with methods for reading and writing files as well as methods to count characters and print confirmation to the terminal. Initialization of the writer and reader classes initializes the translator class which provides methods for splitting, translating, and concatenating text. The alphabet module provides english to braille and braille to english alphabet hashes.
-
 All testing was done using TDD.
